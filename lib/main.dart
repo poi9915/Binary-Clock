@@ -1,4 +1,5 @@
 import 'dart:async' show Timer;
+import 'dart:io';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -6,9 +7,11 @@ import 'package:flutter/services.dart' show SystemChrome, DeviceOrientation;
 import 'package:intl/intl.dart';
 
 void main() {
-  SystemChrome.setPreferredOrientations(
-      [DeviceOrientation.landscapeRight, DeviceOrientation.landscapeLeft]);
-  runApp(MyApp());
+  if (Platform.isAndroid) {
+    SystemChrome.setPreferredOrientations(
+        [DeviceOrientation.landscapeRight, DeviceOrientation.landscapeLeft]);
+    runApp(MyApp());
+  }
 }
 
 class MyApp extends StatelessWidget {
@@ -35,13 +38,14 @@ class _ClockState extends State<Clock> {
 
   @override
   void initState() {
-      Timer.periodic(const Duration(seconds: 1), (v) {
-        setState(() {
-          _now = BinaryTime();
-        });
+    Timer.periodic(const Duration(seconds: 1), (v) {
+      setState(() {
+        _now = BinaryTime();
       });
+    });
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -88,8 +92,6 @@ class _ClockState extends State<Clock> {
       ),
     );
   }
-
-
 }
 
 class BinaryTime {
@@ -128,7 +130,6 @@ class BinaryTime {
 
   get secondOnes => binaryInt?[5];
 }
-
 
 class ClockColumn extends StatelessWidget {
   late String binaryInteger;
