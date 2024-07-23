@@ -1,6 +1,6 @@
-# dmo_flutter
+# Binary Clock 
 
-A new Flutter project.
+A Binary Clock project using Flutter
 
 ## Getting Started
 
