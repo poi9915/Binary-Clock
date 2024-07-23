@@ -10,8 +10,9 @@ void main() {
   if (Platform.isAndroid) {
     SystemChrome.setPreferredOrientations(
         [DeviceOrientation.landscapeRight, DeviceOrientation.landscapeLeft]);
-    runApp(MyApp());
+
   }
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
